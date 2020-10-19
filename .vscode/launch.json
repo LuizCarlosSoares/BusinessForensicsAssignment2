@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "Assesment2:Animal.Reign.Domain::Animal.Reign.Domain.Animal::Move (dotnetcore3.1)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "Animal.Reign.Domain",
+                "lambdaHandler": "Animal.Reign.Domain::Animal.Reign.Domain.Animal::Move"
+            },
+            "lambda": {
+                "runtime": "dotnetcore3.1",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        }
+    ]
+}
