@@ -3,3 +3,7 @@ Animal.Reign.Application/obj
 
 Animal.Reign.Domain/obj
 Animal.Reign.Domain/bin
+
+
+Animal.Reign.Tests/obj
+Animal.Reign.Tests/bin

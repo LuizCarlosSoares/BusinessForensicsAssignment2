@@ -4,18 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using Animal.Reign.Domain.Contracts;
+using Animal.Reign.Models;
 
 namespace Animal.Reign.Application
 {
-    public class Repository<TAnimal> : IRepository<TAnimal> where TAnimal : Animal
+    public class Repository<TAnimalInfo> : IRepository<TAnimalInfo> where TAnimalInfo : AnimalInfo
     {
-        private List<TAnimal> context = new List<TAnimal>();
+        private List<TAnimalInfo> context = new List<TAnimalInfo>();
 
         public Repository()
         {
         }
 
-        public void Delete(TAnimal animalToDelete)
+        public void Delete(TAnimalInfo animalToDelete)
         {
             context.Remove(animalToDelete);
         }
@@ -24,20 +25,14 @@ namespace Animal.Reign.Application
         {
             return base.Equals(obj);
         }
-
-        public IEnumerable<TAnimal> Get(Expression<Func<TAnimal, bool>> filter = null, Func<IQueryable<TAnimal>, IOrderedQueryable<TAnimal>> orderBy = null, string includeProperties = "")
-        {
-            throw new NotImplementedException();
-        }
-
         public Animal GetByID(object id)
         {
             throw new NotImplementedException();
         }
 
-        public ObservableCollection<TAnimal> GetDangerous()
+        public ObservableCollection<TAnimalInfo> GetDangerous()
         {
-            var oc = new ObservableCollection<TAnimal>();
+            var oc = new ObservableCollection<TAnimalInfo>();
 
             context.Where(it=> it.IsDangerous).ToList().ForEach((dangerousAnimal)=>{ 
                 oc.Add(dangerousAnimal);
@@ -46,12 +41,26 @@ namespace Animal.Reign.Application
             return oc;
         }
 
+
+        
+        public ObservableCollection<TAnimalInfo> GetAll()
+        {
+            var oc = new ObservableCollection<TAnimalInfo>();
+
+            context.ToList().ForEach((animalInfo)=>{ 
+                oc.Add(animalInfo);
+            });
+         
+            return oc;
+        }
+
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
-        public void Insert(TAnimal animal)
+        public void Insert(TAnimalInfo animal)
         {
             context.Add(animal);
         }
@@ -61,7 +70,7 @@ namespace Animal.Reign.Application
             return base.ToString();
         }
 
-        public void Update(TAnimal animalToUpdate)
+        public void Update(TAnimalInfo animalToUpdate)
         {
             var currentEntity = context.FirstOrDefault(it=>it.Name==animalToUpdate.Name);
             currentEntity = animalToUpdate;

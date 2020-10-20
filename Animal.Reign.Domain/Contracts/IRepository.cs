@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using Animal.Reign.Models;
 
 namespace Animal.Reign.Domain.Contracts {
-    public interface IRepository<TAnimal> where TAnimal : Animal
+    public interface IRepository<TAnimalInfo> where TAnimalInfo : AnimalInfo
 
     {
 
-        void Delete (TAnimal entityToDelete);    
+        void Delete (TAnimalInfo entityToDelete);    
 
-        ObservableCollection<TAnimal> GetDangerous();
+        ObservableCollection<TAnimalInfo> GetDangerous();
 
-        void Insert (TAnimal entity);
+          ObservableCollection<TAnimalInfo> GetAll();
 
-        void Update (TAnimal entityToUpdate);
+        void Insert (TAnimalInfo entity);
+
+        void Update (TAnimalInfo entityToUpdate);
 
     }
 }
