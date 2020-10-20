@@ -53,7 +53,7 @@ namespace Animal.Reign.Application
 
         public void Insert(TAnimal animal)
         {
-            context.Add(animal)
+            context.Add(animal);
         }
 
         public override string ToString()
